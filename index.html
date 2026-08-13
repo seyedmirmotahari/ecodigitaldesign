@@ -814,7 +814,24 @@ document.addEventListener('DOMContentLoaded', function() {
   <!-- Top Message -->
   <div style="color: inherit; font-size:1.25rem; font-weight:500; letter-spacing: 1px; margin-bottom: 24px; font-family: inherit; text-align:left; width:100%; margin-left:-15px;">
     <div style="font-weight:500;">Global Electricity and Carbon Footprint</div>
-    <div style="font-weight:400; margin-top:6px; font-size:0.95rem;">Since this website loaded.</div>
+    <div style="font-weight:400; margin-top:6px; font-size:0.95rem;">Since this website loaded <span id="uptime" style="font-family:monospace; margin-left:8px;">00:00:00</span></div>
+    <script>
+      (function(){
+        const el = document.getElementById('uptime');
+        if (!el) return;
+        const start = Date.now();
+        function pad(n){ return String(n).padStart(2,'0'); }
+        function update(){
+          const s = Math.floor((Date.now() - start) / 1000);
+          const mm = Math.floor(s/60);
+          const ss = s%60;
+          // show minutes:seconds (no hours)
+          el.textContent = `${String(mm).padStart(2,'0')}:${pad(ss)}`;
+        }
+        update();
+        setInterval(update, 1000);
+      })();
+    </script>
   </div>
 
   <!-- Main Container: Two columns on large screens -->
