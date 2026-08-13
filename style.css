@@ -1864,7 +1864,7 @@ footer .server-stats dd {
 .brand h1 .brackets {
   display: inline-block;
   position: relative;
-  top: -3px;
+  top: -4px;
   line-height: 1;
 }
 .brand .site-description .brackets {
