@@ -807,7 +807,147 @@ document.addEventListener('DOMContentLoaded', function() {
             <!-- Small descriptive sentence in a smaller font under the CTA -->
             <br>
             
-            <p id="no-click-left-cta-subtext" class="left-cta-subtext no-interact" tabindex="0">We present 62 key activities that digital designers should integrate into their process to reduce electricity consumption and carbon footprint. Furthermore, given the rapid development of technology, we propose designers must continuously update their knowledge to effectively achieve this aim.</p>
+            <p id="no-click-left-cta-subtext" class="left-cta-subtext no-interact" tabindex="0">We present 62 practices that digital designers should integrate into their process to reduce electricity consumption and carbon footprint. Furthermore, given the rapid development of technology, we propose designers must continuously update their knowledge to effectively achieve this aim.</p>
+
+          <div style="font-family: inherit; padding: 18px 14px; background-color: transparent; color: inherit; border: none; border-radius: 6px; width: 100%; max-width: 700px; margin: 12px 0 0 0; box-sizing: border-box; text-align: center; font-size: inherit;">
+
+  <!-- Top Message -->
+  <div style="color: inherit; font-size:1.25rem; font-weight:500; letter-spacing: 1px; margin-bottom: 24px; font-family: inherit; text-align:left; width:100%; margin-left:-15px;">
+    <div style="font-weight:500;">Global Electricity and Carbon Footprint</div>
+    <div style="font-weight:400; margin-top:6px; font-size:0.95rem;">Since this website loaded.</div>
+  </div>
+
+  <!-- Main Container: Two columns on large screens -->
+  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 30px;">
+    
+    <!-- Left Column: Electricity (value + unit on same line) -->
+    <div style="flex: 1; min-width: 220px; display: flex; flex-direction: column; align-items: center;">
+      <div style="display:flex; align-items:baseline; gap:8px;">
+        <div id="elec-counter" style="font-size:0.95rem;color:inherit;font-weight:400;line-height:1;font-family:monospace;min-width:5ch;text-align:right;display:inline-block;">0</div>
+        <div style="color:inherit;font-size:0.95rem;font-weight:400;">kWh</div>
+      </div>
+      <div style="margin-top:8px; display:flex; align-items:baseline; gap:8px;">
+        <div style="color:inherit;font-size:0.95rem;">≈</div>
+        <div id="elec-equiv" style="color:inherit;font-family:monospace;font-weight:400;font-size:0.95rem;">0</div>
+        <div style="color:inherit;font-size:0.95rem;font-weight:400;">100W bulbs</div>
+      </div>
+    </div>
+
+    <!-- Vertical Divider (Hidden on Mobile) -->
+    <div style="width: 1px; background-color: transparent; min-height: 100px; display: block;"></div>
+
+    <!-- Right Column: Carbon (value + unit on same line) -->
+    <div style="flex: 1; min-width: 220px; display: flex; flex-direction: column; align-items: center;">
+      <div style="display:flex; align-items:baseline; gap:8px;">
+        <div id="carbon-counter" style="font-size:0.95rem;color:inherit;font-weight:400;line-height:1;font-family:monospace;min-width:5ch;text-align:right;display:inline-block;">0</div>
+        <div style="color:inherit;font-size:0.95rem;font-weight:400;">kg CO<span style="font-size:0.7em; vertical-align:sub; line-height:1;">2</span></div>
+      </div>
+      <div style="margin-top:8px; display:flex; align-items:baseline; gap:8px;">
+        <div style="color:inherit;font-size:0.95rem;">≈</div>
+        <div id="carbon-equiv" style="color:inherit;font-family:monospace;font-weight:400;font-size:0.95rem;">0</div>
+        <div style="color:inherit;font-size:0.95rem;font-weight:400;">miles driven</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Citation at the bottom -->
+  <div style="margin-top: -50px; padding-top: 12px; border-top: none; color: inherit; font-size: inherit; font-family: inherit;">
+    Based on dynamic data modeling from IEA
+  </div>
+
+</div>
+
+<!-- Responsive Style -->
+<style>
+  @media (max-width: 768px) {
+    div[style*="width: 1px; background-color: #333;"] {
+      display: none !important;
+    }
+  }
+</style>
+
+<script>
+  // 1. IEA Base Data and Formulas
+  const baseYear = 2024;
+  const baseKWhPerSecond = 36780;
+  const baseCarbonPerSecond = 16500;
+  const annualGrowthRate = 0.12;
+
+  // 2. Annual scaling calculation based on current year
+  const currentYear = new Date().getFullYear();
+  const yearsPassed = currentYear - baseYear;
+  const growthMultiplier = Math.pow(1 + annualGrowthRate, yearsPassed);
+
+  // 3. Target values per second
+  const targetKWhPerSec = baseKWhPerSecond * growthMultiplier;
+  const targetCarbonPerSec = baseCarbonPerSecond * growthMultiplier;
+
+  // 4. Divide by 60 for 60fps smooth animation
+  const kWhPerFrame = targetKWhPerSec / 60;
+  const carbonPerFrame = targetCarbonPerSec / 60;
+
+  // Start variables from zero
+  let currentElec = 0;
+  let currentCarbon = 0;
+  // Visible integers shown in the UI (smooth stepping)
+  let visibleElec = 0;
+  let visibleCarbon = 0;
+  // (Adaptive stepping will be used to catch up quickly without large jumps)
+
+  // DOM Elements
+  const elecElement = document.getElementById('elec-counter');
+  const carbonElement = document.getElementById('carbon-counter');
+  const elecEquivElement = document.getElementById('elec-equiv');
+  const carbonEquivElement = document.getElementById('carbon-equiv');
+
+  // Live update function
+  function updateCounters() {
+    // Add per-frame production to fractional accumulators
+    currentElec += kWhPerFrame;
+    currentCarbon += carbonPerFrame;
+
+    // Integer targets
+    const targetElecInt = Math.floor(currentElec);
+    const targetCarbonInt = Math.floor(currentCarbon);
+
+    // Adaptive stepping: increase by 1 when close; when gap is large,
+    // move a fraction of the gap per frame so the display catches up
+    // quickly while avoiding a single big jump.
+    if (visibleElec < targetElecInt) {
+      const d = targetElecInt - visibleElec;
+      const step = d <= 10 ? 1 : Math.min(Math.ceil(d * 0.25), 10000);
+      visibleElec += step;
+      if (visibleElec > targetElecInt) visibleElec = targetElecInt;
+    } else if (visibleElec > targetElecInt) {
+      visibleElec = targetElecInt;
+    }
+
+    if (visibleCarbon < targetCarbonInt) {
+      const d2 = targetCarbonInt - visibleCarbon;
+      const step2 = d2 <= 10 ? 1 : Math.min(Math.ceil(d2 * 0.25), 10000);
+      visibleCarbon += step2;
+      if (visibleCarbon > targetCarbonInt) visibleCarbon = targetCarbonInt;
+    } else if (visibleCarbon > targetCarbonInt) {
+      visibleCarbon = targetCarbonInt;
+    }
+
+    // Physical equivalents (based on visible values)
+    const elecEquiv = visibleElec * 10;
+    const carbonEquiv = Math.floor(visibleCarbon * 2.5);
+
+    // Update DOM (formatted)
+    if (elecElement) elecElement.innerText = visibleElec.toLocaleString('en-US');
+    if (carbonElement) carbonElement.innerText = visibleCarbon.toLocaleString('en-US');
+    if (elecEquivElement) elecEquivElement.innerText = elecEquiv.toLocaleString('en-US');
+    if (carbonEquivElement) carbonEquivElement.innerText = carbonEquiv.toLocaleString('en-US');
+
+    requestAnimationFrame(updateCounters);
+  }
+
+  // Start loop
+  requestAnimationFrame(updateCounters);
+</script>
           </div>
         </div>
 
@@ -1970,7 +2110,6 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-solar-title" tabindex="-1">
       <button class="modal-close" aria-label="Close modal">&times;</button>
       <div class="modal-body">
-        <h2 id="modal-solar-title">Solar Powered System</h2>
         <p>Global energy use is increasing, and digital designers have a responsibility to consider the environmental impact of their work. Sustainability should be considered at every step of the design process. Inspired by Low-tech Magazine, this website runs entirely on solar energy and is self-hosted.</p>
         <div class="crossbox-explanation" style="font-size:0.98em; color:#444;white-space:nowrap;display:flex;align-items:center;gap:8px;margin:8px 0 4px 0;">
           <span style="color:var(--green-active);font-weight:600;line-height:1;">Compare image styles:</span>
