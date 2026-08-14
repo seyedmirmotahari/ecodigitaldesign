@@ -809,12 +809,12 @@ document.addEventListener('DOMContentLoaded', function() {
             
             <p id="no-click-left-cta-subtext" class="left-cta-subtext no-interact" tabindex="0">We present 62 practices that digital designers should integrate into their process to reduce electricity consumption and carbon footprint. Furthermore, given the rapid development of technology, we propose designers must continuously update their knowledge to effectively achieve this aim.</p>
 
-          <div style="font-family: inherit; padding: 18px 14px; background-color: transparent; color: inherit; border: none; border-radius: 6px; width: 100%; max-width: 700px; margin: 12px 0 0 0; box-sizing: border-box; text-align: center; font-size: inherit;">
+          <div class="footprint-section" style="font-family: inherit; padding: 12px 14px; background-color: transparent; color: inherit; border: none; border-radius: 6px; width: 100%; max-width: 700px; margin: 8px 0 0 0; box-sizing: border-box; text-align: center; font-size: inherit;">
 
   <!-- Top Message -->
-  <div style="color: inherit; font-size:1.25rem; font-weight:500; letter-spacing: 1px; margin-bottom: 24px; font-family: inherit; text-align:left; width:100%; margin-left:-15px;">
-    <div style="font-weight:500;">Global Electricity and Carbon Footprint</div>
-    <div style="font-weight:400; margin-top:6px; font-size:0.95rem;">Since this website loaded <span id="uptime" style="font-family:monospace; margin-left:8px;">00:00:00</span></div>
+  <div style="color: inherit; font-size:1.25rem; font-weight:500; letter-spacing: 1px; margin-bottom: 12px; font-family: inherit; text-align:left; width:100%; margin-left:-15px;">
+    <div style="font-weight:500;">Digital Design Electricity and Carbon Footprint</div>
+    <div style="font-weight:400; margin-top:10px; font-size:0.95rem; text-align:center; width:100%; margin-left:0;">Since this website loaded <span id="uptime" style="font-family:monospace; margin-left:8px;">00:00:00</span></div>
     <script>
       (function(){
         const el = document.getElementById('uptime');
@@ -835,7 +835,7 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 
   <!-- Main Container: Two columns on large screens -->
-  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 30px;">
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 10px;">
     
     <!-- Left Column: Electricity (value + unit on same line) -->
     <div style="flex: 1; min-width: 220px; display: flex; flex-direction: column; align-items: center;">
@@ -869,8 +869,8 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 
   <!-- Citation at the bottom -->
-  <div style="margin-top: -50px; padding-top: 12px; border-top: none; color: inherit; font-size: inherit; font-family: inherit;">
-    Based on dynamic data modeling from IEA
+  <div style="margin-top: -55px; padding-top: 12px; border-top: none; color: inherit; font-size: 0.7rem; font-family: inherit;">
+    Extrapolated from IEA baseline data and global ICT models
   </div>
 
 </div>
@@ -882,18 +882,39 @@ document.addEventListener('DOMContentLoaded', function() {
       display: none !important;
     }
   }
+    .footprint-section:hover,
+    .footprint-section:hover * {
+      color: var(--green-active) !important;
+    }
+    .footprint-section:hover [style*="background-color: #555"],
+    .footprint-section:hover [style*="height: 1px; background-color: #555"] {
+      background-color: var(--green-active) !important;
+    }
+    .footprint-section:hover [style*="border-bottom: 1px dashed #555"],
+    .footprint-section:hover [style*="border-top: 1px solid #333"] {
+      border-color: var(--green-active) !important;
+    }
 </style>
 
 <script>
-  // 1. IEA Base Data and Formulas
+  /**
+   * ============================================================================
+   * DIGITAL DESIGN CARBON & ELECTRICITY COUNTER
+   * 
+   * Methodology: Extrapolated from global ICT models (~2% allocated to digital design).
+   * Future Updates (2028 Defense): Update baseYear and base rates using latest IEA reports.
+   * ============================================================================
+   */
+
+  // 1. Foundational Data Variables (Updated for Digital Design share)
   const baseYear = 2024;
-  const baseKWhPerSecond = 36780;
-  const baseCarbonPerSecond = 16500;
+  const baseKWhPerSecond = 735;    // ~2% of total ICT global electricity
+  const baseCarbonPerSecond = 330; // ~2% of total ICT global carbon
   const annualGrowthRate = 0.12;
 
   // 2. Annual scaling calculation based on current year
   const currentYear = new Date().getFullYear();
-  const yearsPassed = currentYear - baseYear;
+  const yearsPassed = Math.max(0, currentYear - baseYear);
   const growthMultiplier = Math.pow(1 + annualGrowthRate, yearsPassed);
 
   // 3. Target values per second
@@ -907,10 +928,10 @@ document.addEventListener('DOMContentLoaded', function() {
   // Start variables from zero
   let currentElec = 0;
   let currentCarbon = 0;
+  
   // Visible integers shown in the UI (smooth stepping)
   let visibleElec = 0;
   let visibleCarbon = 0;
-  // (Adaptive stepping will be used to catch up quickly without large jumps)
 
   // DOM Elements
   const elecElement = document.getElementById('elec-counter');
