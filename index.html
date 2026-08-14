@@ -1381,7 +1381,8 @@
               style="width:260px; height:230px; margin-left:-20px; overflow:visible; display:flex; justify-content:center; align-items:center;">
               <figure class="venn-figure" style="margin:0; width:100%; height:100%;">
                 <p id="venn-desc" class="sr-only" style="position:absolute;left:-9999px;">Four-set Venn diagram showing
-                  overlapping relationships between Design, Process, Sustainability and Energy.</p>
+                  overlapping relationships between Timeframe, Specific Problem, Sustainability and Particular Users.
+                </p>
 
                 <!-- Responsive SVG: 700x400 viewBox scales to container width -->
                 <svg id="no-click-venn" class="venn-diagram no-interact" viewBox="0 0 500 560" role="img"
@@ -1478,7 +1479,7 @@
                         stroke: var(--green-active) !important;
                       }
 
-                      /* Active state for right circle + label (Sustanability) */
+                      /* Active state for right circle + label (Sustainability) */
                       .venn-diagram .cB.active {
                         stroke: var(--green-active) !important;
                       }
@@ -1534,15 +1535,18 @@
                     <!-- Path for curved label along the top inner arc of the left circle (used by <textPath>) -->
                     <!-- Centered at (110,200), use a larger inner radius (170) so the text sits near the circle edge but inside -->
                     <!-- Inner arc for left circle moved 10px inside the circle edge (radius 170 => 10px inset) -->
-                    <!-- Left circle (center 110,200) - move 'Timeframe' 40px closer to center (radius 140) -->
-                    <path id="timeframePath" fill="none" d="M -30 200 A 140 140 0 0 1 250 200" />
-                    <!-- Inner-arc paths for each circle so textPaths have valid targets and sit 10px inside the circle edge -->
-                    <!-- Bottom circle (center 210,300) - move text closer to the center (radius 140 => 40px inset) -->
-                    <path id="timeframePathA" fill="none" d="M 70 300 A 140 140 0 0 1 350 300" />
-                    <!-- Right circle (center 310,200) - move text closer to the center (radius 140 => 40px inset) -->
-                    <path id="timeframePathB" fill="none" d="M 170 200 A 140 140 0 0 1 450 200" />
-                    <!-- Top circle (center 210,100) - move text closer to the center (radius 140 => 40px inset) -->
-                    <path id="timeframePathD" fill="none" d="M 70 100 A 140 140 0 0 1 350 100" />
+                    <!-- Left circle (Timeframe) -->
+                    <path id="timeframePath" fill="none" d="M -30 200 A 115 115 0 0 1 260 200" />
+
+                    <!-- Bottom circle (Specific Problem) -->
+                    <path id="timeframePathA" fill="none" d="M 210 135 A 165 165 0 0 0 210 465" />
+
+                    <!-- Right circle (Sustainability) -->
+                    <path id="timeframePathB" fill="none" d="M 145 200 A 165 165 0 0 0 475 200" />
+
+                    <!-- Top circle (Particular Users) -->
+                    <!-- Top circle (Particular Users) -->
+                    <path id="timeframePathD" fill="none" d="M 60 100 A 150 150 0 0 1 360 100" />
                   </defs>
 
                   <!-- Core intersection fill placed before the circle outlines so it renders behind them -->
@@ -1560,7 +1564,7 @@
                                 <text x="222" y="208" text-anchor="middle" dominant-baseline="central"
                                   class="venn-core-text" style="font-size:22px;" transform="rotate(-45 212 203)">
 
-                                  <tspan x="213" dy="-0.2em">Digital Design</tspan>
+                                  <tspan x="213" dy="-0.2em">Design Process</tspan>
                                 </text>
                               </g>
                             </g>
@@ -1584,30 +1588,32 @@
                         <!-- Curved label along the top of the left circle (bigger and closer to the edge) -->
                         <!-- Rotate the text so its final visible rotation is -50deg on the page.
                        Parent group is rotated +45deg, so apply rotate(-95) around the left circle center (110,200). -->
-                        <text id="timeframeText" class="venn-label timeframe-label" style="font-size:30px;"
-                          transform="rotate(-90 110 200)" tabindex="0" aria-label="Timeframe label">
+                        <!-- Timeframe -->
+                        <text id="timeframeText" class="venn-label timeframe-label"
+                          style="font-size:30px; letter-spacing: 1px;" transform="rotate(-90 110 200)" tabindex="0"
+                          aria-label="Timeframe label">
                           <textPath href="#timeframePath" startOffset="50%" text-anchor="middle">Timeframe</textPath>
                         </text>
 
-                        <!-- Curved labels for the other circles (placeholders). Each is rotated
-                       so final visible rotation is -50° (parent group +45° -> child -95°). -->
-                        <!-- Bottom circle (cA) centered at 210,300 -->
-                        <text id="specificText" class="venn-label specific-label" style="font-size:30px;"
-                          transform="rotate(182 210 300)" tabindex="0" aria-label="Specific Problem label">
+                        <!-- Specific Problem -->
+                        <text id="specificText" class="venn-label specific-label"
+                          style="font-size:30px; letter-spacing: 1px;" transform="rotate(-90 210 300)" tabindex="0"
+                          aria-label="Specific Problem label">
                           <textPath href="#timeframePathA" startOffset="50%" text-anchor="middle">
                             <tspan>Specific Problem</tspan>
+                          </textPath>
+                        </text>
 
+                        <!-- Sustainability -->
+                        <text id="sustainabilityText" class="venn-label" style="font-size:30px; letter-spacing: 1px;"
+                          transform="rotate(-90 310 200)" tabindex="0" aria-label="Sustainability label">
+                          <textPath href="#timeframePathB" startOffset="50%" text-anchor="middle">Sustainability
                           </textPath>
                         </text>
-                        <!-- Right circle (cB) centered at 310,200 -->
-                        <text id="sustainabilityText" class="venn-label" style="font-size:30px;"
-                          transform="rotate(88 310 200)" tabindex="0" aria-label="Sustainability label">
-                          <textPath href="#timeframePathB" startOffset="50%" text-anchor="middle">Sustanability
-                          </textPath>
-                        </text>
-                        <!-- Top circle (cD) centered at 210,100 -->
-                        <text id="particularText" class="venn-label" style="font-size:30px;"
-                          transform="rotate(1 210 100)" tabindex="0" aria-label="Particular Users label">
+
+                        <!-- Particular Users -->
+                        <text id="particularText" class="venn-label" style="font-size:30px; letter-spacing: 1px;"
+                          transform="rotate(0 210 100)" tabindex="0" aria-label="Particular Users label">
                           <textPath href="#timeframePathD" startOffset="50%" text-anchor="middle">Particular Users
                           </textPath>
                         </text>
