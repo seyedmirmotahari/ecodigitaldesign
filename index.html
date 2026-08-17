@@ -973,7 +973,7 @@
                 <div
                   style="font-weight:400; margin-top:10px; font-size:0.95rem; text-align:center; width:100%; margin-left:0;">
                   Since this website loaded <span id="uptime"
-                    style="font-family:monospace; margin-left:8px;">00:00:00</span></div>
+                    style="font-family:monospace; font-size:0.85rem; margin-left:8px;">00:00:00</span></div>
                 <script>
                   (function () {
                     const el = document.getElementById('uptime');
@@ -999,16 +999,18 @@
                 <!-- Left Column: Electricity (value + unit on same line) -->
                 <div style="flex: 1; min-width: 220px; display: flex; flex-direction: column; align-items: center;">
                   <div style="display:flex; align-items:baseline; gap:8px;">
+                    <!-- elec-counter font size reduced to 0.85rem -->
                     <div id="elec-counter"
-                      style="font-size:0.95rem;color:inherit;font-weight:400;line-height:1;font-family:monospace;min-width:5ch;text-align:right;display:inline-block;">
+                      style="font-size:0.85rem; color:inherit; font-weight:400; line-height:1; font-family:monospace; text-align:right; display:inline-block;">
                       0</div>
-                    <div style="color:inherit;font-size:0.95rem;font-weight:400;">kWh</div>
+                    <div style="color:inherit; font-size:0.95rem; font-weight:400;">kWh</div>
                   </div>
                   <div style="margin-top:8px; display:flex; align-items:baseline; gap:8px;">
-                    <div style="color:inherit;font-size:0.95rem;">≈</div>
-                    <div id="elec-equiv" style="color:inherit;font-family:monospace;font-weight:400;font-size:0.95rem;">
-                      0</div>
-                    <div style="color:inherit;font-size:0.95rem;font-weight:400;">100W bulbs</div>
+                    <div style="color:inherit; font-size:0.95rem;">≈</div>
+                    <!-- elec-equiv font size reduced to 0.85rem -->
+                    <div id="elec-equiv"
+                      style="color:inherit; font-family:monospace; font-weight:400; font-size:0.85rem;">0</div>
+                    <div style="color:inherit; font-size:0.95rem; font-weight:400;">100W bulbs</div>
                   </div>
                 </div>
 
@@ -1018,17 +1020,19 @@
                 <!-- Right Column: Carbon (value + unit on same line) -->
                 <div style="flex: 1; min-width: 220px; display: flex; flex-direction: column; align-items: center;">
                   <div style="display:flex; align-items:baseline; gap:8px;">
+                    <!-- carbon-counter font size reduced to 0.85rem -->
                     <div id="carbon-counter"
-                      style="font-size:0.95rem;color:inherit;font-weight:400;line-height:1;font-family:monospace;min-width:5ch;text-align:right;display:inline-block;">
+                      style="font-size:0.85rem; color:inherit; font-weight:400; line-height:1; font-family:monospace; text-align:right; display:inline-block;">
                       0</div>
-                    <div style="color:inherit;font-size:0.95rem;font-weight:400;">kg CO<span
+                    <div style="color:inherit; font-size:0.95rem; font-weight:400;">kg CO<span
                         style="font-size:0.7em; vertical-align:sub; line-height:1;">2</span></div>
                   </div>
                   <div style="margin-top:8px; display:flex; align-items:baseline; gap:8px;">
-                    <div style="color:inherit;font-size:0.95rem;">≈</div>
+                    <div style="color:inherit; font-size:0.95rem;">≈</div>
+                    <!-- carbon-equiv font size reduced to 0.85rem -->
                     <div id="carbon-equiv"
-                      style="color:inherit;font-family:monospace;font-weight:400;font-size:0.95rem;">0</div>
-                    <div style="color:inherit;font-size:0.95rem;font-weight:400;">miles driven</div>
+                      style="color:inherit; font-family:monospace; font-weight:400; font-size:0.85rem;">0</div>
+                    <div style="color:inherit; font-size:0.95rem; font-weight:400;">miles driven</div>
                   </div>
                 </div>
 
