@@ -5,9 +5,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>[ECO] DIGITAL DESIGN</title>
-  <style>
-    /* All color and background rules are now in style.css for mode switching */
-  </style>
+
+  <!-- SEO & Institutional Metadata for Academic Indexing -->
+  <meta name="description"
+    content="Academic research affiliated with ITI/LARSyS and FBAUL/CIEBA, University of Lisbon. Supported by FCT (PhD Grant Ref: 2026.00431.BD)." />
+  <meta name="keywords" content="FCT, ITI, LARSyS, FBAUL, CIEBA, PhD Research, Digital Design, University of Lisbon" />
+
+  <!-- Schema.org Structured Data for Academic Project -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ResearchProject",
+    "name": "Eco Digital Design Framework",
+    "url": "https://ecodigital.design",
+    "funder": {
+        "@type": "Organization",
+        "name": "Fundação para a Ciência e a Tecnologia (FCT)",
+        "identifier": "2026.00431.BD"
+    },
+    "parentOrganization": [
+      {
+        "@type": "Organization",
+        "name": "Faculty of Fine Arts of the University of Lisbon (FBAUL)"
+      },
+      {
+        "@type": "Organization",
+        "name": "Interactive Technologies Institute (ITI/LARSyS)"
+      },
+      {
+        "@type": "Organization",
+        "name": "Centro de Investigação e de Estudos em Belas-Artes (CIEBA)"
+      }
+    ]
+  }
+  </script>
   <style>
     /* System Usage: keep the subtext (dd) on a single line */
     .system-usage dl {
@@ -2257,6 +2288,63 @@
           <p><a href="tel:+351967605356" class="contact-link">(+351) 967605356</a></p>
         </div>
       </section>
+    </div> <!-- This is the closing tag for the footer's .container -->
+
+    <!-- Academic & FCT Acknowledgment -->
+    <style>
+      .fct-ack-box {
+        position: relative;
+        text-align: center;
+        margin-top: 15px;
+        padding-top: 12px;
+        padding-bottom: 5px;
+        margin-left: -1rem;
+        margin-right: -1rem;
+        display: block;
+      }
+
+      /* Draws the horizontal line using your exact site variables */
+      .fct-ack-box::before {
+        content: "";
+        position: absolute;
+        height: var(--line-thickness, 1px);
+        background: var(--line-color, var(--green-offline));
+        top: 0;
+        left: var(--line-left, 40px);
+        right: var(--line-right, 40px);
+        transition: background var(--transition-speed, 200ms) ease;
+      }
+
+      .fct-ack-text {
+        color: var(--green-offline);
+        font-size: 0.7rem;
+        font-family: inherit;
+        transition: color 140ms ease;
+      }
+
+      body:not(.backlight-mode) .fct-ack-text:hover {
+        color: var(--green-active) !important;
+      }
+
+      /* Backlight mode overrides */
+      body.backlight-mode .fct-ack-box::before {
+        background: #000 !important;
+      }
+
+      body.backlight-mode .fct-ack-text {
+        color: #606060;
+      }
+
+      body.backlight-mode .fct-ack-text:hover {
+        color: #252525 !important;
+      }
+    </style>
+
+    <div class="fct-ack-box">
+      <span class="fct-ack-text">
+        Academic research affiliated with ITI/LARSyS and FBAUL/CIEBA. Supported by FCT (PhD Grant Ref: 2026.00431.BD).
+      </span>
+    </div>
     </div>
   </footer>
   <!-- Modal for Solar Power mockup -->
