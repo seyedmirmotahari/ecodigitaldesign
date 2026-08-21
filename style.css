@@ -680,7 +680,6 @@ body.backlight-mode #mode-toggle:focus {
 footer .forecast h3 {
   display: inline;
   margin: 0;
-  margin-right: 0.25rem;
 }
 
 footer .forecast dl {
@@ -2582,7 +2581,7 @@ footer .contact a.contact-link {
 /* Footer headings color */
 footer h3 {
   color: var(--line-color);
-  margin: 0 0 0.12rem 0;
+  margin: 0 0 0 0;
   font-size: 0.85rem;
   font-weight: 600;
   transition: color var(--transition-speed) ease;
@@ -2590,7 +2589,7 @@ footer h3 {
 
 /* Small gap under each footer heading so subcontent sits 6px below the title */
 footer section h3+* {
-  margin-top: 6px;
+  margin-top: 0px;
 }
 
 /* System Usage: remove extra gap after label colon and keep CPU value unbroken
@@ -2673,7 +2672,7 @@ footer .forecast dl div {
   display: inline-flex;
   /* keep label and value together */
   align-items: center;
-  gap: 0.5rem;
+  gap: .5rem;
   flex-direction: row;
   /* label first, value second */
   transition: color var(--transition-speed) ease;
@@ -2691,7 +2690,7 @@ footer .forecast dt,
 footer .forecast dd {
   display: inline;
   margin: 0;
-  gap: calc(0.6rem + 10px);
+  gap: calc(0.6rem);
 }
 
 @media (min-width: 701px) {
@@ -2840,19 +2839,19 @@ footer .forecast dd {
   footer .forecast dl>div:first-child dt {
     display: inline-block;
     /* allow vertical margin to take effect */
-    margin-top: 6px;
+    margin-top: 0px;
   }
 
   /* Give the second forecast label ("Tomorrow") a small top offset */
   footer .forecast dl>div:nth-child(2) dt {
     display: inline-block;
     /* allow vertical margin to take effect */
-    margin-top: 2px;
+    margin-top: 0px;
   }
 
   /* Move the whole Tomorrow row down so label and value stay aligned */
   footer .forecast dl>div:nth-child(2) {
-    padding-top: 2px;
+    padding-top: 0px;
   }
 
   /* Move the Today row down so both label and value shift together */
@@ -4180,7 +4179,7 @@ footer .forecast dd {
   footer .forecast dl>div {
     display: block;
     /* one entry per line */
-    margin: 0 0 0.15rem 0;
+    margin: 0 0 0rem 0;
     /* small vertical spacing between lines */
     text-align: left;
     /* ensure left alignment */
