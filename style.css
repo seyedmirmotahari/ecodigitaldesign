@@ -227,6 +227,7 @@ body.backlight-mode footer * {
 #mode-toggle:focus {
   color: var(--green-active) !important;
   border-color: var(--green-active) !important;
+  outline: none !important;
 }
 
 @keyframes mode-toggle-blink {
