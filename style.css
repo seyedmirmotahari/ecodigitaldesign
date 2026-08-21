@@ -1839,10 +1839,10 @@ footer {
   text-align: center;
   padding: 0.625rem 1rem;
   /* 10px top/bottom */
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   /* ensure exact 10px gap below footer */
   /* border-top removed in favor of an inset pseudo-element */
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   color: var(--line-color);
 }
 
@@ -2103,7 +2103,7 @@ body.backlight-mode footer .system-usage:focus-within * {
 
 .server-inline {
   color: var(--line-color);
-  font-size: 0.95rem;
+  font-size: 0.8rem;
 }
 
 footer .forecast dl div {
@@ -2166,7 +2166,7 @@ footer .server-stats dl {
   /* prevent horizontal scrolling */
   -webkit-overflow-scrolling: auto;
   white-space: nowrap;
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   margin: 0;
   /* ensure same spacing as other footer sections */
   padding: 0;
@@ -2187,24 +2187,6 @@ footer .server-stats dl div {
   /* no positioning needed (no separators) */
 }
 
-/* Give the Location row (first entry) in Server Stats a small top offset
-   so the 'Location' label and its value sit slightly lower for visual balance. */
-footer .server-stats dl>div:first-child dt {
-  display: inline-block;
-  /* allow vertical margin to take effect */
-  margin-top: 2px;
-}
-
-footer .server-stats dl>div:first-child {
-  padding-top: 2px;
-}
-
-footer .server-stats dl>div:first-child dd,
-#server-location {
-  display: inline-block;
-  /* allow vertical offsets */
-  margin-top: 2px;
-}
 
 /* Put a colon after each label (dt) for Server Stats */
 footer .server-stats dt::after {
@@ -2587,47 +2569,28 @@ footer .forecast dl div {
 
 /* Contact name styling to align with email size */
 .contact .contact-name {
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   margin: 0;
-  /* keep consistent compact spacing */
-  display: inline-block;
-  /* allow margin-top to take effect */
-  margin-top: 6px;
-  /* add top space so the name sits lower */
 }
 
-/* Make email and contact links match Server Stats size (0.95rem) */
+/* Make email and contact links match Server Stats size (0.8rem) */
 footer .contact a.email,
 footer .contact a.contact-link {
-  font-size: 0.95rem;
-}
-
-/* Give the email link a little top space so it sits visually lower in the Contact column */
-footer .contact a.email {
-  display: inline-block;
-  /* allow margin-top to take effect */
-  margin-top: 3px;
-}
-
-/* Give the website link a little top space so it sits visually lower in the Contact column */
-footer .contact a.contact-link {
-  display: inline-block;
-  /* allow margin-top to take effect */
-  margin-top: 3px;
+  font-size: 0.8rem;
 }
 
 /* Footer headings color */
 footer h3 {
   color: var(--line-color);
   margin: 0 0 0.12rem 0;
-  font-size: 1rem;
+  font-size: 0.85rem;
   font-weight: 600;
   transition: color var(--transition-speed) ease;
 }
 
-/* Small gap under each footer heading so subcontent sits 1px below the title */
+/* Small gap under each footer heading so subcontent sits 6px below the title */
 footer section h3+* {
-  margin-top: 1px;
+  margin-top: 6px;
 }
 
 /* System Usage: remove extra gap after label colon and keep CPU value unbroken
@@ -2672,59 +2635,6 @@ footer .system-usage dl>div dd {
   display: inline-block !important;
 }
 
-/* Give the System Usage CPU Temp label a small top offset so it lines up visually */
-footer .system-usage dl>div:nth-child(2) dt {
-  display: inline-block;
-  /* allow vertical margin to take effect */
-
-}
-
-/* Also add top padding to the CPU row so both label and value move together */
-footer .system-usage dl>div:nth-child(2) {
-  padding-top: 2px;
-}
-
-/* Give the System Usage RAM label a small top offset so it lines up visually */
-footer .system-usage dl>div:nth-child(3) dt {
-  display: inline-block;
-  /* allow vertical margin to take effect */
-  margin-top: 2px;
-}
-
-/* Move the whole RAM row down so label and value stay aligned */
-footer .system-usage dl>div:nth-child(3) {
-  padding-top: 2px;
-}
-
-/* Give the System Usage Storage label a small top offset so it lines up visually */
-footer .system-usage dl>div:last-child dt {
-  display: inline-block;
-  /* allow vertical margin to take effect */
-  margin-top: 3px;
-}
-
-/* Move the whole Storage row down so label and value stay aligned */
-footer .system-usage dl>div:last-child {
-  padding-top: 3px;
-}
-
-/* CPU row (first child) - add top spacing so the 'CPU:' label and value sit lower */
-footer .system-usage dl>div:first-child dt {
-  display: inline-block;
-  /* allow vertical margin to take effect */
-  margin-top: 6px;
-}
-
-footer .system-usage dl>div:first-child {
-  padding-top: 6px;
-}
-
-footer .system-usage dl>div:first-child dd,
-#system-cpu {
-  display: inline-block;
-  /* allow margin-top to move the value */
-  margin-top: 6px;
-}
 
 /* Ensure forecast values appear before labels and align cleanly */
 footer .forecast dl div dt,
@@ -2857,9 +2767,6 @@ footer .forecast dd {
       padding-left: 0px !important;
       /* ensure no accidental left margin pushes it right */
       margin-left: 0 !important;
-      /* pull this column up so the heading aligns with the horizontal line */
-      margin-top: calc(-0.2rem);
-      /* matches footer padding-top (0.625rem) */
     }
 
     /* When any popup/modal is open in green mode, visually raise the Display Energy column
@@ -2894,51 +2801,10 @@ footer .forecast dd {
       margin-left: -20px;
     }
 
-    /* Give the Page Weight row in the Display Energy column a small top offset
-   so the label and value sit slightly lower and align visually with other rows. */
-    footer .website-energy dl>div:nth-child(4) dt {
-      display: inline-block;
-      /* allow vertical margin to take effect */
-      margin-top: 6px;
-    }
-
-    footer .website-energy dl>div:nth-child(4) {
-      /* add a bit of internal spacing to move the whole row down */
-      padding-top: 6px;
-    }
-
-    /* Ensure the page weight value itself can accept vertical offsets so specific
-   numbers like "547.33kb" sit slightly lower for visual alignment. */
-    footer .website-energy dl>div:nth-child(4) dd,
-    #page-weight {
-      display: inline-block;
-      /* allow margin-top to move the value */
-      margin-top: 3px;
-    }
-
-    /* Active Dark Green (first row in Display Energy) - give label and value
-   a small top offset so it sits a little lower for visual spacing. */
-    footer .website-energy dl>div:first-child dt {
-      display: inline-block;
-      /* allow vertical margin to take effect */
-      margin-top: 2px;
-    }
-
-    footer .website-energy dl>div:first-child {
-      padding-top: 2px;
-    }
-
-    footer .website-energy dl>div:first-child dd,
-    #green-dark-count {
-      display: inline-block;
-      /* allow margin-top to move the value */
-      margin-top: 2px;
-    }
-
     /* Tighten spacing so all server stats fit on a single line */
     footer .server-stats dl {
       gap: calc(0.5rem);
-      font-size: 0.95rem;
+      font-size: 0.8rem;
       white-space: nowrap;
       margin-right: 20px;
     }
@@ -2991,14 +2857,14 @@ footer .forecast dd {
 
   /* Move the Today row down so both label and value shift together */
   footer .forecast dl>div:first-child {
-    padding-top: 6px;
+    padding-top: 0px;
   }
 
   /* Allow the Today value (#forecast-today) to accept vertical offset */
   footer .forecast dl>div:first-child dd,
   #forecast-today {
     display: inline-block;
-    margin-top: 6px;
+    margin-top: 0px;
   }
 
   /* removed duplicate: .forecast-updated */
@@ -3013,7 +2879,7 @@ footer .forecast dd {
 
   .server-inline {
     color: var(--line-color);
-    font-size: 0.95rem;
+    font-size: 0.8rem;
   }
 
   footer .server-stats,
@@ -4198,7 +4064,7 @@ footer .forecast dd {
   footer .server-stats dl,
   footer .forecast dl {
     display: flex;
-    gap: 0.5rem;
+    gap: .5rem;
     /* spacing between items */
     align-items: center;
     white-space: nowrap;
@@ -4415,7 +4281,7 @@ footer .forecast dd {
     /* allow interaction if needed */
     background: transparent;
     /* make the box transparent in dark mode as requested */
-    padding: 0.25rem 0.75rem;
+    padding: 0px;
     /* small padding to match footer spacing */
     border-radius: 4px;
   }
